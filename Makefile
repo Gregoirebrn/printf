@@ -6,7 +6,7 @@
 #    By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 16:45:45 by grebrune          #+#    #+#              #
-#    Updated: 2023/11/15 19:59:24 by grebrune         ###   ########.fr        #
+#    Updated: 2023/11/20 19:22:34 by grebrune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJS		:=	$(SRCS:%.c=$(OBJS_D)%.o)
 
 #OBJS_B		:=	$(SRC_B:%.c=$(OBJS_D)%.o)
 
-HEAD		:=	get_next_line.h
+HEAD		:=	ft_printf.h
 
 HEAD_D		:=	.
 
@@ -30,7 +30,7 @@ CFLAGS		:=	-Wall -Wextra -Werror -g3
 
 CC			:=	cc
 
-NAME		:=	get_next_line
+NAME		:=	libftprintf.a
 
 all			:	$(NAME)
 
