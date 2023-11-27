@@ -6,15 +6,15 @@
 #    By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 16:45:45 by grebrune          #+#    #+#              #
-#    Updated: 2023/11/20 19:22:34 by grebrune         ###   ########.fr        #
+#    Updated: 2023/11/27 15:00:51 by grebrune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		:=	\
+SRCS		:=	ft_printf.c\
+				ft_printf_utils.c\
+				ft_putnbr_base.c\
 
-
-
-SRCS_D		:=	#
+SRCS_D		:=	src/
 
 OBJS_D		:=	objs/
 
@@ -24,7 +24,7 @@ OBJS		:=	$(SRCS:%.c=$(OBJS_D)%.o)
 
 HEAD		:=	ft_printf.h
 
-HEAD_D		:=	.
+HEAD_D		:=	head/
 
 CFLAGS		:=	-Wall -Wextra -Werror -g3
 
@@ -38,7 +38,7 @@ all			:	$(NAME)
 $(NAME)		:	$(OBJS_D) $(OBJS) Makefile
 				$(CC) $(CLFAGS) -o $(NAME) $(OBJS)
 
-$(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD)
+$(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)
 				$(CC) $(CFLAGS) -I$(HEAD_D) -c $< -o $@
 
 $(OBJS_D)	:
