@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:03:16 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/27 15:13:21 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:46:51 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../head/ft_printf.h"
 
 int	ft_putchar(char c)
 {
@@ -30,7 +30,7 @@ size_t	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_find_type(void *c, va_list lst)
+int	ft_find_type(const char c, va_list lst)
 {
 	ssize_t	i;
 
@@ -44,10 +44,10 @@ int	ft_find_type(void *c, va_list lst)
 		i = ft_putstr("0x");
 		if (i < - 1)
 			return (i);
-		ft_putnbr_addr((size_t)(lst, size_t), unsigned int, "0123456789abcdef", &i);
+		i = ft_putnbr_addr((size_t)va_arg(lst, size_t), "0123456789abcdef", &i);
 	}
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_b(va_arg(lst, int), "0123456789", &i);
+		ft_putnbr_b((unsigned int)va_arg(lst, int), "0123456789", &i);
 	else if (c == 'u')
 		ft_putnbr_b(va_arg(lst, unsigned int), "0123456789", &i);
 	else if (c == 'x')

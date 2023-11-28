@@ -6,7 +6,7 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:25:25 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/27 14:57:17 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:01:37 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	ft_putchar_base(unsigned int nbr, char *base, unsigned int len, ssize_t *par
 	return (0);
 }
 
-int	ft_putnbr_b(unsigned int i, char *base, ssize_t *parse)
+int	ft_putnbr_b(ssize_t nbr, char *base, ssize_t *parse)
 {
 	size_t	len;
 
 	len = ft_strlen(base);
 	if (len <= 1)
-		return ;
+		return (0);
 	if (nbr < 0)
 	{
 		if ( -1 == write(1, "-", 1))
@@ -64,4 +64,21 @@ int	ft_putnbr_b(unsigned int i, char *base, ssize_t *parse)
 	else
 		ft_putchar_base(nbr, base, len, parse);
 	return (0);
+}
+
+int	ft_putnbr_addr(size_t nbr, char *base, ssize_t *parse)
+{
+	if (!(char *)nbr)
+		return (ft_putstr("(nil)"));
+	if (nbr < ft_strlen(base))
+	{
+		if (-1 == write(1, &base[nbr], 1))
+			return (-1);
+		*parse += 1;
+	}
+	else
+	{
+		ft_putnbr_addr(nbr / ft_strlen(base), base, parse);
+		ft_putnbr_addr(nbr % ft_strlen(base), base, parse);
+	}
 }
