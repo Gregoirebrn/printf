@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:25:25 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/28 16:15:52 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:22:22 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head/ft_printf.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(char *str)
 {
@@ -68,11 +68,6 @@ ssize_t	ft_putnbr_b(ssize_t nbr, char *base, ssize_t *parse)
 
 ssize_t	ft_putnbr_addr(size_t nbr, char *base, ssize_t *parse)
 {
-//	if (!(char *)nbr)
-//	{
-//		parse += ft_putstr("(nil)");
-//		return (parse);
-//	}
 	if (nbr < ft_strlen(base))
 	{
 		if (-1 == write(1, &base[nbr], 1))

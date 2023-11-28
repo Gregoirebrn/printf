@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:03:16 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/28 16:12:47 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:31:21 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
@@ -22,12 +22,25 @@ size_t	ft_putstr(char *str)
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
 	while (str[i])
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);
+}
+
+ssize_t	ft_addr(size_t nbr, char *base, ssize_t *parse)
+{
+	if ((char *)nbr == NULL)
+	{
+		*parse = ft_putstr("(nil)");
+		return (*parse);
+	}
+	*parse = ft_putstr("0x");
+	return (ft_putnbr_addr(nbr, base, parse));
 }
 
 ssize_t	ft_find_type(const char c, va_list lst)
@@ -40,12 +53,9 @@ ssize_t	ft_find_type(const char c, va_list lst)
 	else if (c == 's')
 		return(ft_putstr(va_arg(lst, char *)));
 	else if (c == 'p')
-	{
-		i = ft_putstr("0x");
-		return (ft_putnbr_addr((size_t)va_arg(lst, size_t), "0123456789abcdef", &i));
-	}
+		return (ft_addr((size_t)va_arg(lst, size_t), "0123456789abcdef", &i));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_b((unsigned int)va_arg(lst, int), "0123456789", &i));
+		return (ft_putnbr_b((int)va_arg(lst, int), "0123456789", &i));
 	else if (c == 'u')
 		ft_putnbr_b(va_arg(lst, unsigned int), "0123456789", &i);
 	else if (c == 'x')

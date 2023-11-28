@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:39:19 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/28 16:10:03 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:55:03 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *str , ...)
 {
@@ -38,38 +38,38 @@ int	ft_printf(const char *str , ...)
 	return (len);
 }
 
-#include <stdio.h>
-
-int	main(void)
-{
-//	char *str = "string";
-//	char cha = 'H';
-	int	tni = 42;
-	int i = 0;
-
-//	i = ft_printf("%c\n", cha);
-//	printf("fake=%d\n", i);
-//	i = printf("%c\n", cha);
-//	printf("reel=%d\n", i);
+//#include <stdio.h>
 //
-//	i = ft_printf("%s\n", str);
-//	printf("fake=%d\n", i);
-//	i = printf("%s\n", str);
-//	printf("reel=%d\n", i);
-
-//	i = ft_printf("%p\n", (void *)str);
-//	printf("fake=%d\n", i);
-//	i = printf("%p\n", (void *)str);
-//	printf("reel=%d\n", i);
-
-	i = ft_printf("%d\n", tni);
-	printf("fake=%d\n", i);
-	i = printf("%d\n", tni);
-	printf("reel=%d\n", i);
-
-	i = ft_printf("%d\n", tni);
-	printf("fake=%d\n", i);
-	i = printf("%d\n", tni);
-	printf("reel=%d\n", i);
-	return (0);
-}
+//int	main(void)
+//{
+////	char *str = "string";
+////	char cha = 'H';
+//	int	tni = 42;
+//	int i = 0;
+//
+////	i = ft_printf("%c\n", cha);
+////	ft_printf("fake=%d\n", i);
+////	i = ft_printf("%c\n", cha);
+////	ft_printf("reel=%d\n", i);
+////
+////	i = ft_printf("%s\n", str);
+////	ft_printf("fake=%d\n", i);
+////	i = ft_printf("%s\n", str);
+////	ft_printf("reel=%d\n", i);
+//
+////	i = ft_printf("%p\n", (void *)str);
+////	ft_printf("fake=%d\n", i);
+////	i = ft_printf("%p\n", (void *)str);
+////	ft_printf("reel=%d\n", i);
+//
+//	i = ft_printf("%d\n", tni);
+//	ft_printf("fake=%d\n", i);
+//	i = ft_printf("%d\n", tni);
+//	ft_printf("reel=%d\n", i);
+//
+//	i = ft_printf("%d\n", tni);
+//	ft_printf("fake=%d\n", i);
+//	i = ft_printf("%d\n", tni);
+//	ft_printf("reel=%d\n", i);
+//	return (0);
+//}
