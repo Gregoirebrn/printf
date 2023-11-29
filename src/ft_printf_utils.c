@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:03:16 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/28 17:31:21 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:17:39 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	ft_putchar(char c)
 {
@@ -26,7 +26,8 @@ size_t	ft_putstr(char *str)
 		return (ft_putstr("(null)"));
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		if (-1 == write(1, &str[i], 1))
+			return (-1);
 		i++;
 	}
 	return (i);
@@ -40,6 +41,8 @@ ssize_t	ft_addr(size_t nbr, char *base, ssize_t *parse)
 		return (*parse);
 	}
 	*parse = ft_putstr("0x");
+	if (*parse == -1)
+		return (*parse);
 	return (ft_putnbr_addr(nbr, base, parse));
 }
 
@@ -49,9 +52,9 @@ ssize_t	ft_find_type(const char c, va_list lst)
 
 	i = 0;
 	if (c == 'c')
-		return(ft_putchar((unsigned char)va_arg(lst, int)));
+		return (ft_putchar((unsigned char)va_arg(lst, int)));
 	else if (c == 's')
-		return(ft_putstr(va_arg(lst, char *)));
+		return (ft_putstr(va_arg(lst, char *)));
 	else if (c == 'p')
 		return (ft_addr((size_t)va_arg(lst, size_t), "0123456789abcdef", &i));
 	else if (c == 'd' || c == 'i')

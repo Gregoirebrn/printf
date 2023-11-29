@@ -6,11 +6,11 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:25:25 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/28 17:22:22 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:17:39 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 size_t	ft_strlen(char *str)
 {
@@ -30,7 +30,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_putchar_base(unsigned int nbr, char *base, unsigned int len, ssize_t *parse)
+int	ft_aff(unsigned int nbr, char *base, unsigned int len, ssize_t *parse)
 {
 	if (nbr < len)
 	{
@@ -40,8 +40,8 @@ int	ft_putchar_base(unsigned int nbr, char *base, unsigned int len, ssize_t *par
 	}
 	else
 	{
-		ft_putchar_base(nbr / len, base, len, parse);
-		ft_putchar_base(nbr % len, base, len, parse);
+		ft_aff(nbr / len, base, len, parse);
+		ft_aff(nbr % len, base, len, parse);
 	}
 	return (0);
 }
@@ -55,14 +55,14 @@ ssize_t	ft_putnbr_b(ssize_t nbr, char *base, ssize_t *parse)
 		return (0);
 	if (nbr < 0)
 	{
-		if ( -1 == write(1, "-", 1))
+		if (-1 == write(1, "-", 1))
 			return (-1);
 		*parse += 1;
-		if (-1 == ft_putchar_base(nbr * -1, base, len, parse))
+		if (-1 == ft_aff(nbr * -1, base, len, parse))
 			return (-1);
 	}
 	else
-		ft_putchar_base(nbr, base, len, parse);
+		ft_aff(nbr, base, len, parse);
 	return (*parse);
 }
 
@@ -71,13 +71,8 @@ ssize_t	ft_putnbr_addr(size_t nbr, char *base, ssize_t *parse)
 	if (nbr < ft_strlen(base))
 	{
 		if (-1 == write(1, &base[nbr], 1))
-			return (*parse);
+			return (-1);
 		*parse += 1;
-//		{
-//			parse = -1;
-//			return (parse);
-//		}
-//		else
 	}
 	else
 	{
