@@ -18,6 +18,15 @@ void	ft_add(size_t *len, ssize_t *err_write, size_t *i)
 	*i += 2;
 }
 
+int	ft_printchar(const char *str, size_t *i, size_t *len)
+{
+	if (-1 == ft_putchar(str[*i]))
+		return (-1);
+	*i += 1;
+	*len += 1;
+	return (0);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	size_t	i;
@@ -27,8 +36,10 @@ int	ft_printf(const char *str, ...)
 
 	len = 0;
 	i = 0;
+	if (!str)
+		return (0);
 	va_start(lst, str);
-	while (str && str[i])
+	while (str[i])
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{
@@ -38,11 +49,8 @@ int	ft_printf(const char *str, ...)
 			ft_add(&len, &err_write, &i);
 		}
 		else
-		{
-			if (-1 == ft_putchar(str[i++]))
+			if (-1 == ft_printchar(str, &i, &len))
 				return (-1);
-			len++;
-		}
 	}
 	return (va_end(lst), (int)len);
 }

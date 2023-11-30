@@ -24,5 +24,6 @@ ssize_t	ft_putnbr_addr(size_t i, char *base, ssize_t *parse);
 ssize_t	ft_addr(size_t i, char *base, ssize_t *parse);
 size_t	ft_putstr(char *str);
 int		ft_putchar(char c);
+int		ft_printchar(const char *str, size_t *i, size_t *len);
 
 #endif
