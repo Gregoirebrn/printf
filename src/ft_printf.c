@@ -6,19 +6,19 @@
 /*   By: grebrune <grebrune@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:39:19 by grebrune          #+#    #+#             */
-/*   Updated: 2023/11/29 14:53:21 by grebrune         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:58:32 by grebrune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_add(size_t *len, ssize_t *err_write, size_t *i)
+static void	ft_add(size_t *len, ssize_t *err_write, size_t *i)
 {
 	*len += *err_write;
 	*i += 2;
 }
 
-int	ft_printchar(const char *str, size_t *i, size_t *len)
+static int	ft_printchar(const char *str, size_t *i, size_t *len)
 {
 	if (-1 == ft_putchar(str[*i]))
 		return (-1);
